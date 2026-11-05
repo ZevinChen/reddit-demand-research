@@ -1,47 +1,56 @@
-# Reddit Demand Research Assistant
+# Reddit Community Needs Assistant
 
-Personal, **read-only** research helper that uses the [Reddit Data API](https://www.reddit.com/dev/api) (OAuth) to study public discussions and surface unmet user needs.
+Personal, **non-commercial**, **read-only** developer tool that uses the official [Reddit Data API](https://www.reddit.com/dev/api) (OAuth) so I can build products that solve problems Redditors already talk about in public threads.
 
-## Purpose
+This is **not** academic research and is **not** an application to the Reddit for Researchers (RFR) program. It is a personal developer workflow for product discovery and prioritization.
 
-Help Redditors indirectly by turning public posts and comments into clearer product priorities: recurring pain points, feature requests, and open questions—so builders can ship things people actually ask for.
+## Purpose / benefit for Redditors
 
-## What it does
+I use public discussions only to understand recurring problems, feature requests, and open questions, then ship tools or content that address those needs. Redditors benefit when products match what they already ask for. The tool never posts, comments, votes, DMs, or otherwise engages on Reddit.
 
-- Authenticate with a registered OAuth client and a descriptive User-Agent
-- Search and read **public** posts and comments in selected subreddits
-- Summarize themes (pain points, requests, questions) for personal product research
-- Respect Reddit rate limits and API terms
+## Scope
 
-## What it does **not** do
+- **Access:** OAuth client for the official Data API only (no scraping, no unofficial endpoints)
+- **Actions:** read-only — search/list public posts and comments in a small set of subreddits relevant to each product idea
+- **Write actions:** none (no submit, edit, vote, message, or moderation)
+- **Audience:** me only (personal tool; not a multi-tenant SaaS; no redistribution of Reddit data)
+- **Commercial use of Reddit data:** none — I will not sell, license, share, or commercialize Reddit data, and I will not use it for ads targeting or to train AI/ML models
+- **Rate limits:** stay within free-tier limits (e.g. 100 QPM) and honor `X-Ratelimit-*` headers
+- **User-Agent:** descriptive string including platform, app id, version, and `/u/Downtown-Act-9950`
+- **Deleted content:** purge stored post/comment bodies and author identifiers promptly when content or accounts are deleted on Reddit (target within 48 hours)
+- **Privacy:** no inference of sensitive attributes; no re-identification against off-platform identifiers
 
-- Post, comment, vote, or send DMs
-- Moderate communities
-- Scrape without OAuth or exceed rate limits
-- Retain content after it is deleted on Reddit
-- Train AI/ML models on Reddit data
-- Resell or redistribute Reddit data
+## Why not Devvit
 
-## Planned stack
+[Devvit](https://developers.reddit.com/docs/) runs interactive apps *inside* Reddit. This workflow is an external, offline analysis tool that queries public listings across several subreddits and summarizes themes on my local machine for product planning. That pattern is outside Devvit’s in-platform app model, which is why I am requesting Data API access as a developer whose use case is not supported by Devvit.
 
-- Language: Python (or similar)
-- Auth: Reddit OAuth2
-- Access: official Data API only
-- Storage: short-lived local notes; purge deleted content promptly
+## Planned implementation
 
-## Subreddits
+- Language: Python
+- Auth: Reddit OAuth2 (script/personal use once approved)
+- Storage: short-lived local notes / caches only; no public dataset dump
+- Repo: implementation scripts will be added here after access is granted
 
-Chosen per research topic (examples: `r/startups`, `r/SaaS`, and niche product communities). No mass cross-posting.
+## Subreddits (initial)
+
+Small, topic-specific sets only, for example:
+
+- `r/startups`
+- `r/SaaS`
+- plus 1–3 niche communities tied to the product under consideration
+
+No mass scanning of the whole site; no cross-posting.
 
 ## Operator
 
 - Reddit account: `/u/Downtown-Act-9950`
 - Contact: `zevinchen1993@gmail.com`
+- Prior request id (revision of same use case): `18704215`
 
 ## Status
 
-Early planning / awaiting Data API access approval. Source and scripts will live in this repository as the project progresses.
+Awaiting revised Data API access approval. This README is the public source / product description for the access request.
 
 ## Compliance
 
-Use is subject to Reddit’s [Developer Terms](https://www.redditinc.com/policies/developer-terms), [Data API Terms](https://www.redditinc.com/policies/data-api-terms), and [Responsible Builder Policy](https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy).
+I agree to follow Reddit’s [Developer Terms](https://www.redditinc.com/policies/developer-terms), [Data API Terms](https://www.redditinc.com/policies/data-api-terms), [Public Content Policy](https://support.reddithelp.com/hc/en-us/articles/23558095570836-Public-Content-Policy), and [Responsible Builder Policy](https://support.reddithelp.com/hc/en-us/articles/42728983564564-Responsible-Builder-Policy).
